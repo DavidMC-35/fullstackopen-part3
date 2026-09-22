@@ -43,6 +43,9 @@ app.use(express.json())
 app.use(cors())
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :data'))
 
+// Connect Backend and Frontend
+app.use(express.static('dist'))
+
 
 // Show all the persons
 app.get('/api/persons', (request, response) => {
@@ -110,7 +113,8 @@ app.post('/api/persons', (request, response) => {
 
 
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 })
